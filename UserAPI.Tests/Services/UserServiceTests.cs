@@ -29,7 +29,8 @@ namespace UserAPI.Tests.Services
                 _validationUpdateMock.Object,
                 _userRepositoryMock.Object,
                 _authHelpersMock.Object,
-                _eventPublisherMock.Object
+                _eventPublisherMock.Object,
+                new Mock<IGameCatalogClient>().Object
             );
         }
 
