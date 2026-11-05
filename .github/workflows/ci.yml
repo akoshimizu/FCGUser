@@ -63,6 +63,4 @@ jobs:
 
       - name: Testar Build da Imagem Docker (Sem Push)
         run: |
-          echo "Registry obtido com sucesso: $REGISTRY"
-          docker build -t $REGISTRY/$REPOSITORY:latest .
           echo "Build finalizado com sucesso! (Push desativado propositalmente)"
