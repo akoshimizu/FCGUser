@@ -51,11 +51,11 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v2
 
-      - name: Testar Build e Push com Repositório Inválido (Para dar erro proposital)
+      - name: Testar Build da Imagem Docker (Sem Push)
         env:
           REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          REPOSITORY: repositorio-que-nao-existe-propositalmente
+          REPOSITORY: meu-teste-local
         run: |
           echo "Registry obtido com sucesso: $REGISTRY"
           docker build -t $REGISTRY/$REPOSITORY:latest .
-          docker push $REGISTRY/$REPOSITORY:latest
+          echo "Build finalizado com sucesso! (Push desativado propositalmente)"
