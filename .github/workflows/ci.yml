@@ -41,6 +41,22 @@ jobs:
 
       # --- ETAPAS DE TESTE DO OIDC E ECR ---
 
+      - name: Diagnosticar Claims OIDC
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const core = require('@actions/core');
+      
+            const token = await core.getIDToken('sts.amazonaws.com');
+      
+            const payload = JSON.parse(
+              Buffer.from(token.split('.')[1], 'base64url').toString()
+            );
+      
+            console.log('Issuer:', payload.iss);
+            console.log('Audience:', payload.aud);
+            console.log('Subject:', payload.sub);
+
       - name: Autenticar na AWS via OIDC
         uses: aws-actions/configure-aws-credentials@v4
         with:
